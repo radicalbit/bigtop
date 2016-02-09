@@ -401,5 +401,15 @@ bigtop {
                 site = "${apache.APACHE_MIRROR}/${download_path}"
                 archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
     }
+    'hawq' {
+      name     = 'hawq'
+      relNotes = 'Apache HAWQ (incubating)'
+      version { base = '2.0.0'; pkg = base; release = 1 }
+      tarball { source      = "$name-${version.base}-incubating.zip"
+                destination = "$name-${version.base}.tar.gz" }
+      url     { download_path = "/incubator/$name/${version.base}-incubating/"
+                site = "${apache.APACHE_MIRROR}/${download_path}"
+                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+    }
   }
 }
