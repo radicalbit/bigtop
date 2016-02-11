@@ -405,11 +405,11 @@ bigtop {
       name     = 'hawq'
       relNotes = 'Apache HAWQ (incubating)'
       version { base = '2.0.0'; pkg = base; release = 1 }
-      tarball { source      = "$name-${version.base}-incubating.zip"
+      tarball { source      = "${version.base}-beta-incubating-RC4.tar.gz"
                 destination = "$name-${version.base}.tar.gz" }
-      url     { download_path = "/incubator/$name/${version.base}-incubating/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "/apache/incubator-$name/archive"
+                site = "https://github.com/${download_path}"
+                archive = site }
     }
   }
 }
