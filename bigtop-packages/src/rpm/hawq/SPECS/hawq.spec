@@ -179,6 +179,3 @@ fi
 %files doc
 %defattr(-,root,root)
 %doc %{doc_hawq}
-
-
-
