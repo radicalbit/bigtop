@@ -20,3 +20,11 @@ export HAWQ_PID_DIR="/var/run/hawq"
 export HAWQ_LOG_DIR="/var/log/hawq"
 export HAWQ_WORK_DIR="/var/run/hawq/work"
 export HAWQ_IDENT_STRING=hawq
+
+export PATH=$HAWQ_HOME/bin:$HAWQ_HOME/ext/python/bin:$PATH
+export LD_LIBRARY_PATH=$HAWQ_HOME/lib:$HAWQ_HOME/ext/python/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$HAWQ_HOME/lib/python:$HAWQ_HOME/lib/python/pygresql:$PYTHONPATH
+export OPENSSL_CONF=$HAWQ_CONF_DIR/openssl.cnf
+export LIBHDFS3_CONF=$HAWQ_CONF_DIR/hdfs-client.xml
+export LIBYARN_CONF=$HAWQ_CONF_DIR/yarn-client.xml
+export HAWQSITE_CONF=$HAWQ_CONF_DIR/hawq-site.xml
