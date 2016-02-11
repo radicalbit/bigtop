@@ -22,7 +22,7 @@
 %define pids_hawq %{hawq_home}/pids
 %define man_dir %{_mandir}
 %define hawq_username hawq
-%define vcs_tag %{hawq_version}
+%define vcs_tag incubator-%{name}-%{hawq_version}-beta-incubating-RC4
 
 %if  %{?suse_version:1}0
 
@@ -79,7 +79,7 @@ URL: http://hawq.incubator.apache.org/
 Group: Development/Libraries
 Buildroot: %{_topdir}/INSTALL/%{name}-%{version}
 License: APL2
-Source0: hawq-%{hawq_base_version}.tar.gz
+Source0: %{vcs_tag}.tar.gz
 Source1: do-component-build
 Source2: install_hawq.sh
 Source3: hawq.svc
@@ -106,7 +106,7 @@ BuildArch: noarch
 Documentation for Hawq platform
 
 %prep
-%setup -n hawq-%{vcs_tag}
+%setup -n %{vcs_tag}
 
 %build
 bash %{SOURCE1}

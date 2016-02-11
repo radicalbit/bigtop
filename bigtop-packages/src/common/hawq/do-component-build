@@ -18,11 +18,22 @@ set -ex
 
 . `dirname $0`/bigtop.bom
 
-echo "Later we'll be running a real build here.\n \
-For the time being just pretend we did"
+#docker run --rm=true -v `pwd`:/data -u root rlei/mydocker:latest /bin/sh -c "
 
-echo "Now we'll be just unpacking a pre-built binary tarball"
-
-tar zxf ~/work/bigtop/hawq-2.0.0-incubating.tgz
-
-echo "Pre-built binaries are unpacked"
+echo "Running the native build"
+date;
+./configure --prefix=`pwd`/hawq
+if [ $? != 0 ]; then
+    echo HAWQ configure failed.
+    exit 1
+fi
+make -j8
+if [ $? != 0 ]; then
+    echo HAWQ compile failed.
+    exit 1
+fi
+make install
+if [ $? != 0 ]; then
+    echo HAWQ make install failed.
+    exit 1
+fi
