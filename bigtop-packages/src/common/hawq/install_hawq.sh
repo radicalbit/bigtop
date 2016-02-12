@@ -124,6 +124,8 @@ cp -ra $UNZIP_DIR/share $PREFIX/$LIB_DIR
 cp -ar $UNZIP_DIR/include $PREFIX/$LIB_DIR
 cp -ar $UNZIP_DIR/docs $PREFIX/$DOC_DIR
 
+cp -ar $UNZIP_DIR/../libyarn/* $PREFIX/$LIB_DIR
+
 ln -s $ETC_DIR/conf $PREFIX/$LIB_DIR/config
 
 wrapper=$PREFIX/usr/bin/hawq
