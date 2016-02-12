@@ -17,12 +17,25 @@
 set -ex
 
 . `dirname $0`/bigtop.bom
+CWD=`pwd`
 
 #docker run --rm=true -v `pwd`:/data -u root rlei/mydocker:latest /bin/sh -c "
+## build libyarn first
+cd depends/libyarn
+mkdir -p build
+cd build
+../bootstrap --prefix=${CWD}/libyarn
+make -j8
+make install
+cd ${CWD}
+ldconfig $CWD/libyarn/lib
+## libyarn should be available in the system at this point
 
 echo "Running the native build"
 date;
-./configure --prefix=`pwd`/hawq
+./configure --prefix=${CWD}/hawq \
+    --with-libs=$CWD/libyarn/lib \
+    --with-includes=$CWD/libyarn/include
 if [ $? != 0 ]; then
     echo HAWQ configure failed.
     exit 1
