@@ -19,6 +19,9 @@ set -ex
 . `dirname $0`/bigtop.bom
 CWD=`pwd`
 
+# Why? A single script with ksh, which isn't even ksh specific?
+sed -i -e 's#/bin/ksh#/bin/bash#' tools/bin/diskqual.ksh
+
 #docker run --rm=true -v `pwd`:/data -u root rlei/mydocker:latest /bin/sh -c "
 ## build libyarn first
 cd depends/libyarn
