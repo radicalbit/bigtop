@@ -1,0 +1,72 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+class hawq {
+  class deploy ($roles) {
+    if ("hawq" in $roles) {
+      ignite_hadoop::node { "hawq-node": }
+    }
+  }
+
+  define node() {
+    $hadoop_head_node = hiera("bigtop::hadoop_head_node")
+    $hadoop_namenode_port = hiera("hadoop::common_hdfs::hadoop_namenode_port", "8020")
+
+    package { "hawq":
+      ensure => latest,
+    }
+
+    file { "/etc/default/hawq":
+      content => template("hawq/hawq"),
+      require => Package["hawq"],
+    }
+
+    file { "/etc/hawq/conf":
+      ensure  => directory,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      require => Package["hawq"],
+    }
+    file { "/etc/hawq/conf/hawq-site.xml":
+        content => template('hawq/hawq-site.xml'),
+        require => [File["/etc/hawq/conf"]],
+    }
+    file { "/etc/hawq/conf/gpcheck.cnf":
+        content => template('hawq/gpcheck.cnf'),
+        require => [File["/etc/hawq/conf"]],
+    }
+    file { "/etc/hawq/conf/hdfs-client.xml":
+        content => template('hawq/hdfs-client.xml'),
+        require => [File["/etc/hawq/conf"]],
+    }
+    file { "/etc/hawq/conf/yarn-client.xml":
+        content => template('hawq/yarn-client.xml'),
+        require => [File["/etc/hawq/conf"]],
+    }
+## let's make sure that hawq libs are linked properly
+    file {'/usr/lib/hadoop/lib/hawq.jar':
+      ensure  => link,
+      target  => '/usr/lib/hawq/libs/hawq/hawq.jar',
+      require => [Package["hawq-service"]],
+    }
+
+    service { "hawq":
+      ensure  => running,
+      require => [ Package["hawq"], File["/etc/default/hawq"] ],
+      subscribe => [ Package["hawq"], File["/etc/default/hawq", "/etc/hawq/conf/hawq-site.xml"] ]
+    }
+  }
+}
