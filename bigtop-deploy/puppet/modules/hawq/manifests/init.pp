@@ -16,20 +16,21 @@
 class hawq {
   class deploy ($roles) {
     if ("hawq" in $roles) {
-      ignite_hadoop::node { "hawq-node": }
+      hawq::cluster_node { "hawq-node": }
     }
   }
 
-  define node() {
+  define cluster_node() {
     $hadoop_head_node = hiera("bigtop::hadoop_head_node")
     $hadoop_namenode_port = hiera("hadoop::common_hdfs::hadoop_namenode_port", "8020")
 
     package { "hawq":
-      ensure => latest,
+      ensure  => latest,
+      ## require => for centos this crap needs epel-release
     }
 
     file { "/etc/default/hawq":
-      content => template("hawq/hawq"),
+      content => template("hawq/hawq.default"),
       require => Package["hawq"],
     }
 
@@ -55,12 +56,6 @@ class hawq {
     file { "/etc/hawq/conf/yarn-client.xml":
         content => template('hawq/yarn-client.xml'),
         require => [File["/etc/hawq/conf"]],
-    }
-## let's make sure that hawq libs are linked properly
-    file {'/usr/lib/hadoop/lib/hawq.jar':
-      ensure  => link,
-      target  => '/usr/lib/hawq/libs/hawq/hawq.jar',
-      require => [Package["hawq-service"]],
     }
 
     service { "hawq":
