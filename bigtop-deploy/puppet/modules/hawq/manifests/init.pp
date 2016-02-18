@@ -23,6 +23,8 @@ class hawq {
   define cluster_node() {
     $hadoop_head_node = hiera("bigtop::hadoop_head_node")
     $hadoop_namenode_port = hiera("hadoop::common_hdfs::hadoop_namenode_port", "8020")
+    $hawq_head = hiera("hawq::head_node", "localhost")
+    $hawq_head_port = hiera('hawq::master_port', "5432")
 
     package { "hawq":
       ensure  => latest,

@@ -22,13 +22,13 @@ under the License.
 <configuration>
   <property>
     <name>hawq_master_address_host</name>
-    <value>localhost</value>
+    <value><%= @hawq_head %></value>
     <description>The host name of hawq master.</description>
   </property>
 
   <property>
     <name>hawq_master_address_port</name>
-    <value>5432</value>
+    <value><%= @hawq_head_port %></value>
     <description>The port of hawq master.</description>
   </property>
 
