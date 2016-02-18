@@ -14,8 +14,6 @@
 # limitations under the License.
 
 class hawq {
-  include stdlib
-
   class deploy ($roles) {
     if ("hawq" in $roles) {
       hawq::cluster_node { "hawq-node": }
@@ -42,8 +40,8 @@ class hawq {
 
     file { "/etc/hawq/conf":
       ensure  => directory,
-      owner   => 'root',
-      group   => 'root',
+      owner   => 'hawq',
+      group   => 'hawq',
       mode    => '0755',
       require => Package["hawq"],
     }
@@ -65,9 +63,8 @@ class hawq {
     }
     file { "/etc/hawq/conf/slaves":
         ensure  => file,
-        content => $slaves_content,
+        content => "localhost", ## TODO - this has to be dynamic
     }
-    $slaves_content = join (hiera('bigtop::hawq_slaves), ' ')
 
     exec { "install pygresql modules1":
       path 	 => ['/usr/bin'],
@@ -95,6 +92,7 @@ class hawq {
       ensure 	 => latest,
     }
 
+### TODO init require hdfs to be running. Need to test this
     exec { "hawk init":
       path 	 => ['/usr/bin'],
       # Silly init will ask if I am really sure I want to init the cluster
@@ -102,10 +100,11 @@ class hawq {
       require	 => [ Package['hawq', 'python-pip', 'postgresql'], Exec ['install pygresql modules3'] ],
     }
 
-    service { "hawq":
-      ensure  => running,
-      require => [ Package["hawq"], File["/etc/default/hawq"], Exec["hawk init"] ],
-      subscribe => [ Package["hawq"], File["/etc/default/hawq", "/etc/hawq/conf/hawq-site.xml"] ]
-    }
+### TODO The expectation is that init will start the service. I don't think so...
+#    service { "hawq":
+#      ensure  => running,
+#      require => [ Package["hawq"], File["/etc/default/hawq"], Exec["hawk init"] ],
+#     subscribe => [ Package["hawq"], File["/etc/default/hawq", "/etc/hawq/conf/hawq-site.xml"] ]
+#    }
   }
 }
