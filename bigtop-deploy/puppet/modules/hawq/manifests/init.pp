@@ -14,6 +14,8 @@
 # limitations under the License.
 
 class hawq {
+  include stdlib
+
   class deploy ($roles) {
     if ("hawq" in $roles) {
       hawq::cluster_node { "hawq-node": }
@@ -61,10 +63,43 @@ class hawq {
         content => template('hawq/yarn-client.xml'),
         require => [File["/etc/hawq/conf"]],
     }
+    file { "/etc/hawq/conf/slaves":
+        ensure  => file,
+        content => $slaves_content,
+    }
+    $slaves_content = join (hiera('bigtop::hawq_slaves), ' ')
+
+    exec { "install pygresql modules1":
+      path 	 => ['/usr/bin'],
+      command	 => 'pip --retries=50 --timeout=300 install pg8000 simplejson unittest2 pycrypto pygresql pyyaml lockfile paramiko psi',
+      require	 => [ Package['python-pip'] ],
+    }
+    exec { "install pygresql modules2":
+      path 	 => ['/usr/bin'],
+      command	 => 'pip --retries=50 --timeout=300 install http://darcs.idyll.org/~t/projects/figleaf-0.6.1.tar.gz',
+      require	 => [ Package['python-pip'], Exec ['install pygresql modules1'] ],
+    }
+    exec { "install pygresql modules3":
+      path 	 => ['/usr/bin'],
+      command	 => 'pip --retries=50 --timeout=300 install http://sourceforge.net/projects/pychecker/files/pychecker/0.8.19/pychecker-0.8.19.tar.gz/download',
+      require	 => [ Package['python-pip'], Exec ['install pygresql modules2'] ],
+      ## HAWQ install instructions are suggesting to
+      ## uninstall postgresql postgresql-libs postgresql-devel at this point
+      ## but I don't think it matter, and for sure looks ugly
+    }
+
+    package { "python-pip":
+      ensure 	 => latest,
+    }
+    package { "postgresql":
+      ensure 	 => latest,
+    }
+
     exec { "hawk init":
       path 	 => ['/usr/bin'],
-      command	 => 'bash -x /usr/bin/hawq init',
-      require	 => Package['hawq'],
+      # Silly init will ask if I am really sure I want to init the cluster
+      command	 => 'echo y | bash -x /usr/bin/hawq init cluster',
+      require	 => [ Package['hawq', 'python-pip', 'postgresql'], Exec ['install pygresql modules3'] ],
     }
 
     service { "hawq":

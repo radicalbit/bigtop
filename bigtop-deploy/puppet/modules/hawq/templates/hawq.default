@@ -14,6 +14,8 @@
 # limitations under the License.
 
 export HAWQ_HOME="/usr/lib/hawq"
+## Due to some weird scripting, hawq doesn't work without GPHOME
+export GPHOME=$HAWQ_HOME
 export HAWQ_CONF_DIR="/etc/hawq/conf"
 
 export HAWQ_PID_DIR="/var/run/hawq"
