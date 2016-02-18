@@ -46,7 +46,7 @@ under the License.
 
   <property>
     <name>hawq_dfs_url</name>
-    <value>localhost:8020/hawq_default</value>
+    <value><%= @hadoop_head_node %>:<%= @hadoop_namenode_port %>/hawq_default</value>
     <description>URL for accessing HDFS.</description>
   </property>
 
@@ -103,7 +103,7 @@ under the License.
 
   <property>
     <name>hawq_rm_yarn_address</name>
-    <value>localhost:8032</value>
+    <value><%= @hawq_yarn_rm_host %>:<%= @hawq_yarn_rm_port %></value>
     <description>The address of YARN resource manager server.</description>
   </property>
 

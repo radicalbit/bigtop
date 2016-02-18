@@ -176,4 +176,5 @@ zeppelin::server::hiveserver2_user: "%{hiera('bigtop::hiveserver2_user')}"
 zeppelin::server::hiveserver2_password: "%{hiera('bigtop::hiveserver2_password')}"
 
 # hawq
-hawq::head_node:	"%{hiera('hawq::head_node')}"
+bigtop::hawq_master_node:	"%{hiera('bigtop::hawq_master_node')}"
+bigtop::hawq_master_port:	"5432"
