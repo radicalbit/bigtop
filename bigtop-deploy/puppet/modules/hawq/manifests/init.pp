@@ -61,10 +61,15 @@ class hawq {
         content => template('hawq/yarn-client.xml'),
         require => [File["/etc/hawq/conf"]],
     }
+    exec { "hawk init":
+      path 	 => ['/usr/bin'],
+      command	 => 'bash -x /usr/bin/hawq init',
+      require	 => Package['hawq'],
+    }
 
     service { "hawq":
       ensure  => running,
-      require => [ Package["hawq"], File["/etc/default/hawq"] ],
+      require => [ Package["hawq"], File["/etc/default/hawq"], Exec["hawk init"] ],
       subscribe => [ Package["hawq"], File["/etc/default/hawq", "/etc/hawq/conf/hawq-site.xml"] ]
     }
   }
