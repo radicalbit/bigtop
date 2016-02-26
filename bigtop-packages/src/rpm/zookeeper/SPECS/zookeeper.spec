@@ -51,7 +51,7 @@
 
 %define doc_zookeeper %{_docdir}/%{name}-%{zookeeper_version}
 %define alternatives_cmd alternatives
-%define alternatives_dep chkconfig 
+%define alternatives_dep chkconfig
 %define chkconfig_dep    chkconfig
 %define service_dep      initscripts
 %global initd_dir %{_sysconfdir}/rc.d/init.d
@@ -79,21 +79,21 @@ Source7: zookeeper.default
 Source8: init.d.tmpl
 Source9: zookeeper-rest.svc
 #BIGTOP_PATCH_FILES
-BuildRequires: autoconf, automake, cppunit-devel
+# BuildRequires: autoconf, automake, cppunit-devel
 Requires(pre): coreutils, /usr/sbin/groupadd, /usr/sbin/useradd
 Requires(post): %{alternatives_dep}
 Requires(preun): %{alternatives_dep}
 Requires: bigtop-utils >= 0.7
 
-%description 
-ZooKeeper is a centralized service for maintaining configuration information, 
-naming, providing distributed synchronization, and providing group services. 
-All of these kinds of services are used in some form or another by distributed 
-applications. Each time they are implemented there is a lot of work that goes 
-into fixing the bugs and race conditions that are inevitable. Because of the 
-difficulty of implementing these kinds of services, applications initially 
-usually skimp on them ,which make them brittle in the presence of change and 
-difficult to manage. Even when done correctly, different implementations of these services lead to management complexity when the applications are deployed.  
+%description
+ZooKeeper is a centralized service for maintaining configuration information,
+naming, providing distributed synchronization, and providing group services.
+All of these kinds of services are used in some form or another by distributed
+applications. Each time they are implemented there is a lot of work that goes
+into fixing the bugs and race conditions that are inevitable. Because of the
+difficulty of implementing these kinds of services, applications initially
+usually skimp on them ,which make them brittle in the presence of change and
+difficult to manage. Even when done correctly, different implementations of these services lead to management complexity when the applications are deployed.
 
 %package server
 Summary: The Hadoop Zookeeper server
@@ -248,4 +248,3 @@ fi
 %{bin_zookeeper}/load_gen*
 %{_includedir}/zookeeper
 %{_libdir}/*
-
