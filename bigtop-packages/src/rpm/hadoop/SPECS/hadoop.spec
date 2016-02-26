@@ -171,7 +171,7 @@ Source28: mapred.1
 Source29: hadoop-yarn-timelineserver.svc
 #BIGTOP_PATCH_FILES
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id} -u -n)
-BuildRequires: fuse-devel, fuse, cmake
+#BuildRequires: fuse-devel, fuse, cmake
 Requires: coreutils, /usr/sbin/useradd, /usr/sbin/usermod, /sbin/chkconfig, /sbin/service, bigtop-utils >= 0.7, zookeeper >= 3.4.0
 Requires: psmisc, %{netcat_package}
 # Sadly, Sun/Oracle JDK in RPM form doesn't provide libjvm.so, which means we have
@@ -180,7 +180,7 @@ Requires: psmisc, %{netcat_package}
 AutoReq: no
 
 %if  %{?suse_version:1}0
-BuildRequires: pkg-config, libfuse2, libopenssl-devel, gcc-c++
+#BuildRequires: pkg-config, libfuse2, libopenssl-devel, gcc-c++
 # Required for init scripts
 Requires: sh-utils, insserv
 %endif
@@ -188,13 +188,13 @@ Requires: sh-utils, insserv
 # CentOS 5 does not have any dist macro
 # So I will suppose anything that is not Mageia or a SUSE will be a RHEL/CentOS/Fedora
 %if %{!?suse_version:1}0 && %{!?mgaversion:1}0
-BuildRequires: pkgconfig, fuse-libs, redhat-rpm-config, lzo-devel, openssl-devel
+#BuildRequires: pkgconfig, fuse-libs, redhat-rpm-config, lzo-devel, openssl-devel
 # Required for init scripts
 Requires: sh-utils, /lib/lsb/init-functions
 %endif
 
 %if  0%{?mgaversion}
-BuildRequires: pkgconfig, libfuse-devel, libfuse2 , libopenssl-devel, gcc-c++, liblzo-devel, zlib-devel
+#BuildRequires: pkgconfig, libfuse-devel, libfuse2 , libopenssl-devel, gcc-c++, liblzo-devel, zlib-devel
 Requires: chkconfig, xinetd-simple-services, zlib, initscripts
 %endif
 
@@ -514,7 +514,7 @@ echo 'export JSVC_HOME=%{libexecdir}/bigtop-utils' >> $RPM_BUILD_ROOT/etc/defaul
 for service in %{hadoop_services}
 do
        bash %{SOURCE11} $RPM_SOURCE_DIR/%{name}-${service}.svc rpm $RPM_BUILD_ROOT/%{initd_dir}/%{name}-${service}
-       cp $RPM_SOURCE_DIR/${service/-*/}.default $RPM_BUILD_ROOT/etc/default/%{name}-${service}
+       cp $RPM_SOURCE_DIR/$(echo $service | cut -f1 -d-).default $RPM_BUILD_ROOT/etc/default/%{name}-${service}
        chmod 644 $RPM_BUILD_ROOT/etc/default/%{name}-${service}
 done
 
@@ -749,5 +749,3 @@ fi
 %attr(0644,root,root) %config(noreplace) /etc/default/hadoop-fuse
 %attr(0755,root,root) %{lib_hadoop}/bin/fuse_dfs
 %attr(0755,root,root) %{bin_hadoop}/hadoop-fuse-dfs
-
-
