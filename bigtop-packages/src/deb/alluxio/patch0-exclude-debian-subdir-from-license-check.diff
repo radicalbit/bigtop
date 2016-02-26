@@ -1,0 +1,10 @@
+--- alluxio-1.0.0/pom.xml.orig	2015-02-11 06:23:19.000000000 +0100
++++ alluxio-1.0.0/pom.xml	2015-04-01 21:52:11.672000000 +0200
+@@ -515,6 +515,7 @@
+             <exclude>**/docs/**/*</exclude>
+             <exclude>LICENSE</exclude>
+             <exclude>NOTICE</exclude>
++            <exclude>debian/**</exclude>
+
+             <!-- Default local file Exclusions -->
+             <exclude>**/underFSStorage/**</exclude>

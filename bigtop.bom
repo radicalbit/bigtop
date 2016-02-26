@@ -353,6 +353,15 @@ bigtop {
       url     { site = "https://github.com/amplab/tachyon/archive"
                 archive = site }
     }
+    'alluxio' {
+      name    = "alluxio"
+      relNotes = "Alluxio: a memory-centric distributed file system"
+      version { base = '1.0.0'; pkg = base; release = 1 }
+      tarball { destination = "$name-${version.base}-bin.tar.gz"
+                source      = "$name-${version.base}-bin.tar.gz" }
+      url     { site = "http://www.alluxio.org/downloads/files/${version.base}/"
+                archive = "http://www.alluxio.org/downloads/files/${version.base}/" }
+    }
     'kafka' {
       name    = 'kafka'
       relNotes = 'Apache Kafka'
