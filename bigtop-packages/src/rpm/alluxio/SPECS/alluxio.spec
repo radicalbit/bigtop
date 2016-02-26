@@ -12,22 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-Name:           alluxio
-Version:        %{alluxio_version}
-Release:        %{alluxio_release}
-Summary:       Reliable file sharing at memory speed across cluster frameworks
-License:       ASL 2.0
-URL:           http://alluxio.org/
-Group:         Development/Libraries
-BuildArch:     noarch
-
-Source0:       %{alluxio_name}-%{alluxio_base_version}-bin.tar.gz
-Source1:       do-component-build
-Source2:       install_alluxio.sh
-Source3:       init.d.tmpl
-Source4:       alluxio-master.svc
-Source5:       alluxio-worker.svc
 %define        alluxio_name alluxio
 %define        alluxio_home /usr/lib/%{alluxio_name}
 %define        alluxio_services master worker
@@ -53,10 +37,26 @@ Source5:       alluxio-worker.svc
 #
 #%endif
 
-Requires: bigtop-utils
-
 # disable repacking jars
 %define __arch_install_post %{nil}
+
+Name:           alluxio
+Version:        %{alluxio_version}
+Release:        %{alluxio_release}
+Summary:       Reliable file sharing at memory speed across cluster frameworks
+License:       ASL 2.0
+URL:           http://alluxio.org/
+Group:         Development/Libraries
+BuildArch:     noarch
+
+Source0:       %{alluxio_name}-%{alluxio_base_version}-bin.tar.gz
+Source1:       do-component-build
+Source2:       install_alluxio.sh
+Source3:       init.d.tmpl
+Source4:       alluxio-master.svc
+Source5:       alluxio-worker.svc
+#BIGTOP_PATCH_FILES
+Requires: bigtop-utils
 
 %description
 Alluxio is a fault tolerant distributed file system
@@ -88,6 +88,8 @@ Bundles the init script for Alluxio worker node.
 
 %prep
 %setup -n %{alluxio_name}-%{alluxio_base_version}
+
+#BIGTOP_PATCH_COMMANDS
 
 %build
 bash $RPM_SOURCE_DIR/do-component-build
