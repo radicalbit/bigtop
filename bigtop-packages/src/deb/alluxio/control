@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-Source: alluxio-tfs
+Source: alluxio
 Section: misc
 Priority: extra
 Maintainer: Mauro Cortellazzi <mauro.cortellazzi@radicalbit.io>
@@ -21,7 +21,7 @@ Build-Depends: debhelper (>= 7.0.50~)
 Standards-Version: 3.9.4
 Homepage: http://www.alluxio.org
 
-Package:  alluxio-tfs
+Package:  alluxio
 Architecture: all
 Depends: bigtop-utils (>= 0.7)
 Description: Reliable file sharing at memory speed across cluster frameworks
@@ -35,3 +35,15 @@ Description: Reliable file sharing at memory speed across cluster frameworks
  access cached files at memory speed. Thus, Alluxio
  avoids going to disk to load data-sets that
  are frequently read.
+
+Package: alluxio-master
+Architecture: all
+Depends: alluxio
+Description: Bundles the init script for Alluxio Master node.
+ This package starts the Alluxio Master on startup
+
+Package: alluxio-worker
+Architecture: all
+Depends: alluxio
+Description: Bundles the init script for Alluxio Worker node.
+ This package starts the Alluxio Worker on startup

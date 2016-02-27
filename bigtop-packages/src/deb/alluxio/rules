@@ -38,6 +38,6 @@ override_dh_auto_install:
     --libexec-dir=/usr/lib/alluxio/libexec \
     --var-dir= /var/ \
     --prefix=debian/tmp
-	mkdir -p debian/alluxio-tfs/etc/init.d/
-	bash debian/init.d.tmpl debian/alluxio-master.svc deb debian/alluxio-tfs/etc/init.d/alluxio-master
-	bash debian/init.d.tmpl debian/alluxio-worker.svc deb debian/alluxio-tfs/etc/init.d/alluxio-worker
+	mkdir -p debian/alluxio/etc/init.d/
+	bash debian/init.d.tmpl debian/alluxio-master.svc deb debian/alluxio/etc/init.d/alluxio-master
+	bash debian/init.d.tmpl debian/alluxio-worker.svc deb debian/alluxio/etc/init.d/alluxio-worker
