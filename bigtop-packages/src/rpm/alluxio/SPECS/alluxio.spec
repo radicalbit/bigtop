@@ -21,7 +21,7 @@
 %define        etc_alluxio /etc/%{alluxio_name}
 %define        config_alluxio %{etc_alluxio}/conf
 
-%global        initd_dir %{_sysconfdir}/init.d
+#%global        initd_dir %{_sysconfdir}/init.d
 %define        alternatives_cmd update-alternatives
 
 #%if  %{?suse_version:1}0
@@ -36,6 +36,7 @@
 #%global        initd_dir %{_sysconfdir}/rc.d/init.d
 #
 #%endif
+%global        initd_dir /usr/rbp/alluxio
 
 # disable repacking jars
 %define __arch_install_post %{nil}
@@ -191,8 +192,6 @@ fi
 %dir %{_sysconfdir}/%{alluxio_name}
 %config(noreplace) %{_sysconfdir}/%{alluxio_name}/conf/log4j.properties
 %config(noreplace) %{_sysconfdir}/%{alluxio_name}/conf/workers
-#%config(noreplace) %{initd_dir}/%{alluxio_name}-master
-#%config(noreplace) %{initd_dir}/%{alluxio_name}-worker
 %config(noreplace) %{_sysconfdir}/%{alluxio_name}/conf/alluxio-env.sh
 %config(noreplace) %{alluxio_home}/libexec/alluxio-layout.sh
 %attr(0755,root,root) %{var_lib}
