@@ -47,6 +47,7 @@
 
 %endif
 
+%global initd_dir /usr/rbp/kafka
 
 # disable repacking jars
 %define __os_install_post %{nil}

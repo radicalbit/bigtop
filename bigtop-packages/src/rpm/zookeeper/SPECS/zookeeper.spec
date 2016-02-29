@@ -58,6 +58,7 @@
 
 %endif
 
+%global        initd_dir /usr/rbp/zookeeper
 
 
 Name: zookeeper

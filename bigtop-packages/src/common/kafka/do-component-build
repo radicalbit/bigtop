@@ -31,6 +31,6 @@ export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=512m -XX:PermSize=1024m -XX:
 
 rm -rf build
 mkdir build
-  
+
 cp core/build/distributions/kafka_*.tgz build/`basename core/build/distributions/kafka* .tgz`.tar.gz
 

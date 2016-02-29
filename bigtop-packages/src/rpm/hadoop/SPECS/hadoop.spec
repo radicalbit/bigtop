@@ -122,7 +122,7 @@
 %global initd_dir %{_sysconfdir}/rc.d/init.d
 %endif
 
-%global        initd_dir /usr/rbp/alluxio
+%global        initd_dir /usr/rbp/hadoop
 
 # Even though we split the RPM into arch and noarch, it still will build and install
 # the entirety of hadoop. Defining this tells RPM not to fail the build
