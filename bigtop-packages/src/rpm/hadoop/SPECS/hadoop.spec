@@ -588,9 +588,9 @@ if [ $1 = 0 ]; then
 fi
 
 %postun httpfs
-if [ $1 -ge 1 ]; then
-  service %{name}-httpfs condrestart >/dev/null 2>&1
-fi
+#if [ $1 -ge 1 ]; then
+#  service %{name}-httpfs condrestart >/dev/null 2>&1
+#fi
 
 
 %files yarn
@@ -695,19 +695,19 @@ fi
 %files %1 \
 %defattr(-,root,root) \
 %{initd_dir}/%{name}-%1 \
-%config(noreplace) /etc/default/%{name}-%1 \
-%post %1 \
-chkconfig --add %{name}-%1 \
-\
-%preun %1 \
-if [ $1 = 0 ]; then \
-  service %{name}-%1 stop > /dev/null 2>&1 \
-  chkconfig --del %{name}-%1 \
-fi \
-%postun %1 \
-if [ $1 -ge 1 ]; then \
-  service %{name}-%1 condrestart >/dev/null 2>&1 \
-fi
+%config(noreplace) /etc/default/%{name}-%1
+#%post %1 \
+#chkconfig --add %{name}-%1 \
+#\
+#%preun %1 \
+#if [ $1 = 0 ]; then \
+#  service %{name}-%1 stop > /dev/null 2>&1 \
+#  chkconfig --del %{name}-%1 \
+#fi \
+#%postun %1 \
+#if [ $1 -ge 1 ]; then \
+#  service %{name}-%1 condrestart >/dev/null 2>&1 \
+#fi
 
 %service_macro hdfs-namenode
 %service_macro hdfs-secondarynamenode

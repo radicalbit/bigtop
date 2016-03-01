@@ -134,48 +134,48 @@ if [ "$1" = 0 ]; then
   %{alternatives_cmd} --remove %{alluxio_name}-conf %{config_alluxio}.dist || :
 fi
 
-for service in %{alluxio_services}; do
-  /sbin/service %{alluxio_name}-${service} status > /dev/null 2>&1
-  if [ $? -eq 0 ]; then
-    /sbin/service %{alluxio_name}-${service} stop > /dev/null 2>&1
-  fi
-done
+#for service in %{alluxio_services}; do
+#  /sbin/service %{alluxio_name}-${service} status > /dev/null 2>&1
+#  if [ $? -eq 0 ]; then
+#    /sbin/service %{alluxio_name}-${service} stop > /dev/null 2>&1
+#  fi
+#done
 
 ################################
 #### Alluxio master section ####
 ################################
 %post master
-chkconfig --add %{alluxio_name}-master
+#chkconfig --add %{alluxio_name}-master*/
 
 %preun master
-/sbin/service %{alluxio_name}-master status > /dev/null 2>&1
-if [ $? -eq 0  ] ; then
-  service %{alluxio_name}-master stop > /dev/null 2>&1
-  chkconfig --del %{alluxio_name}-master
-fi
+#/sbin/service %{alluxio_name}-master status > /dev/null 2>&1
+#if [ $? -eq 0  ] ; then
+#  service %{alluxio_name}-master stop > /dev/null 2>&1
+#  chkconfig --del %{alluxio_name}-master
+#fi
 
 %postun master
-if [ $1 -ge 1 ]; then
-  service %{alluxio_name}-master condrestart >/dev/null 2>&1
-fi
+#if [ $1 -ge 1 ]; then
+#  service %{alluxio_name}-master condrestart >/dev/null 2>&1
+#fi
 
 ################################
 #### Alluxio worker section ####
 ################################
 %post worker
-chkconfig --add %{alluxio_name}-worker
+#chkconfig --add %{alluxio_name}-worker*/
 
 %preun worker
-/sbin/service %{alluxio_name}-worker status > /dev/null 2>&1
-if [ $? -eq 0  ] ; then
-  service %{alluxio_name}-worker stop > /dev/null 2>&1
-  chkconfig --del %{alluxio_name}-worker
-fi
+#/sbin/service %{alluxio_name}-worker status > /dev/null 2>&1
+#if [ $? -eq 0  ] ; then
+#  service %{alluxio_name}-worker stop > /dev/null 2>&1
+#  chkconfig --del %{alluxio_name}-worker
+#fi
 
 %postun worker
-if [ $1 -ge 1 ]; then
-  service %{alluxio_name}-worker condrestart >/dev/null 2>&1
-fi
+#if [ $1 -ge 1 ]; then
+#  service %{alluxio_name}-worker condrestart >/dev/null 2>&1
+#fi
 
 #######################
 #### FILES SECTION ####

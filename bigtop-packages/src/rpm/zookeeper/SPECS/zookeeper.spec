@@ -194,32 +194,32 @@ if [ "$1" = 0 ]; then
 fi
 
 %post server
-	chkconfig --add %{svc_zookeeper}
+#	chkconfig --add %{svc_zookeeper}*/
 
 %preun server
-if [ $1 = 0 ] ; then
-	service %{svc_zookeeper} stop > /dev/null 2>&1
-	chkconfig --del %{svc_zookeeper}
-fi
+#if [ $1 = 0 ] ; then
+#	service %{svc_zookeeper} stop > /dev/null 2>&1
+#	chkconfig --del %{svc_zookeeper}
+#fi
 
 %postun server
-if [ $1 -ge 1 ]; then
-        service %{svc_zookeeper} condrestart > /dev/null 2>&1
-fi
+#if [ $1 -ge 1 ]; then
+#        service %{svc_zookeeper} condrestart > /dev/null 2>&1
+#fi
 
 %post rest
-	chkconfig --add %{svc_zookeeper_rest}
+#	chkconfig --add %{svc_zookeeper_rest}*/
 
 %preun rest
-if [ $1 = 0 ] ; then
-	service %{svc_zookeeper_rest} stop > /dev/null 2>&1
-	chkconfig --del %{svc_zookeeper_rest}
-fi
+#if [ $1 = 0 ] ; then
+#	service %{svc_zookeeper_rest} stop > /dev/null 2>&1
+#	chkconfig --del %{svc_zookeeper_rest}
+#fi
 
 %postun rest
-if [ $1 -ge 1 ]; then
-        service %{svc_zookeeper_rest} condrestart > /dev/null 2>&1
-fi
+#if [ $1 -ge 1 ]; then
+#        service %{svc_zookeeper_rest} condrestart > /dev/null 2>&1
+#fi
 
 #######################
 #### FILES SECTION ####
