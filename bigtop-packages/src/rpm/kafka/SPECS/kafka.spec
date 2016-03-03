@@ -126,32 +126,32 @@ getent passwd kafka >/dev/null || useradd -c "Kafka" -s /sbin/nologin -g kafka -
 %{alternatives_cmd} --install %{config_kafka} %{kafka_name}-conf %{config_kafka}.dist 30
 
 %preun
-if [ "$1" = 0 ]; then
-  %{alternatives_cmd} --remove %{kafka_name}-conf %{config_kafka}.dist || :
-fi
+#if [ "$1" = 0 ]; then
+#  %{alternatives_cmd} --remove %{kafka_name}-conf %{config_kafka}.dist || :
+#fi
 
-/sbin/service %{kafka_name}-server status > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-  /sbin/service %{kafka_name}-server stop > /dev/null 2>&1
-fi
+#/sbin/service %{kafka_name}-server status > /dev/null 2>&1
+#if [ $? -eq 0 ]; then
+#  /sbin/service %{kafka_name}-server stop > /dev/null 2>&1
+#fi
 
 #######################
 #### Kafka-server section ####
 #######################
 %post server
-chkconfig --add %{kafka_name}-server
+#chkconfig --add %{kafka_name}-server
 
 %preun server
-/sbin/service %{kafka_name}-server status > /dev/null 2>&1
-if [ $? -eq 0  ] ; then
-  service kafka-server stop > /dev/null 2>&1
-  chkconfig --del %{kafka_name}-server
-fi
+#/sbin/service %{kafka_name}-server status > /dev/null 2>&1
+#if [ $? -eq 0  ] ; then
+#  service kafka-server stop > /dev/null 2>&1
+#  chkconfig --del %{kafka_name}-server
+#fi
 
 %postun server
-if [ $1 -ge 1 ]; then
-  service %{kafka_name}-server condrestart >/dev/null 2>&1
-fi
+#if [ $1 -ge 1 ]; then
+#  service %{kafka_name}-server condrestart >/dev/null 2>&1
+#fi
 
 #######################
 #### FILES SECTION ####
