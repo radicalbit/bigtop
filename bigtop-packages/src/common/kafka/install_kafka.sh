@@ -111,7 +111,8 @@ install -d -m 0755 $PREFIX/var/run/kafka/
 install -d -m 0755 $PREFIX/var/lib/kafka/data
 
 # Unzip binary tarball contents to lib directory.
-tar zxf ${BUILD_DIR}/build/kafka*.tar.gz -C ${PREFIX}/${LIB_DIR} --strip 1
+#tar zxf ${BUILD_DIR}/build/kafka*.tar.gz -C ${PREFIX}/${LIB_DIR} --strip 1
+tar zxf ${BUILD_DIR}/build/kafka*.tgz -C ${PREFIX}/${LIB_DIR} --strip 1
 rm -f ${PREFIX}/${LIB_DIR}/{LICENSE,NOTICE}
 
 #Remove config directory. Creating symlink below.
