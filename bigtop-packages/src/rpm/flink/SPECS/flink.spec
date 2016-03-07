@@ -21,12 +21,12 @@
 %define man_dir %{_mandir}
 
 %if  %{!?suse_version:1}0
-%define doc_flink %{_docdir}/%{flink_name}-%{flink_version}
+%define doc_flink %{_docdir}/%{flink_name}
 %define alternatives_cmd alternatives
 %define build_flink %{_builddir}/%{flink_name}-%{flink_version}/flink-dist/target/%{flink_name}-%{flink_version}-bin/%{flink_name}-%{flink_version}/
 
 %else
-%define doc_flink %{_docdir}/%{flink_name}-%{flink_version}
+%define doc_flink %{_docdir}/%{flink_name}
 %define alternatives_cmd update-alternatives
 %endif
 
