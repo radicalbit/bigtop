@@ -90,7 +90,7 @@ bigtop {
     zookeeper:['hadoop', 'hbase'],
     hadoop:['ignite-hadoop', 'hbase', 'crunch', 'pig', 'hive', 'tez', 'sqoop', 'sqoop2',
       'oozie', 'mahout', 'flume', 'giraph', 'solr', 'crunch', 'spark',
-      'phoenix', 'tachyon', 'alluxio', 'kafka', 'ycsb', 'kite', 'hama', 'zeppelin'
+      'phoenix', 'flink', 'tachyon', 'alluxio', 'kafka', 'ycsb', 'kite', 'hama', 'zeppelin'
     ],
     hbase:['phoenix','giraph','ycsb'],
     pig:['datafu', 'oozie'],
@@ -342,6 +342,15 @@ bigtop {
       url     { download_path = "/tomcat/tomcat-6/v${version.base}/src"
                 site = "${apache.APACHE_MIRROR}/${download_path}"
                 archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+    }
+    'flink' {
+      name    = 'flink'
+      relNotes = 'Apache Flink'
+      version { base = '1.0.0'; pkg = base; release = 1 }
+      tarball { destination = "${name}-${version.base}.zip"
+                source      = "release-${version.base}-rc5.zip" }
+      url     { site = "https://github.com/apache/flink/archive"
+                archive = "https://github.com/apache/flink/archive" }
     }
     'tachyon' {
       name    = "tachyon"
