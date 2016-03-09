@@ -47,7 +47,7 @@ Source0: cassandra-%{cassandra_base_version}.zip
 Source1: do-component-build
 Source2: install_cassandra.sh
 Source3: bigtop.bom
-Requires: bigtop-utils >= 0.7
+#Requires: bigtop-utils >= 0.7
 
 %description
 Apache cassandra
