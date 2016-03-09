@@ -105,7 +105,7 @@ rm -rf $PREFIX/${LIB_DIR}/lib/sigar-bin/*.lib
 # Copy in the configuration files
 install -d -m 0755 $PREFIX/$CONF_DIR
 cp -a ${BUILD_DIR}/conf/* $PREFIX/$CONF_DIR
-ln -s /etc/flink/conf $PREFIX/$LIB_DIR/conf
+ln -s /etc/cassandra/conf $PREFIX/$LIB_DIR/conf
 
 # Copy in the /usr/bin/flink wrapper
 install -d -m 0755 $PREFIX/$BIN_DIR
