@@ -121,7 +121,7 @@ cp -a ${BUILD_DIR}/examples/ $PREFIX/$DOC_DIR/
 install -d -m 0755 $PREFIX/$BIN_DIR
 cat > $PREFIX/$BIN_DIR/flink <<EOF
 
-!/bin/bash
+#!/bin/bash
 # Autodetect JAVA_HOME if not defined
 . /usr/lib/bigtop-utils/bigtop-detect-javahome
 
