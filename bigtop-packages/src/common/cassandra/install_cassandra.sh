@@ -83,6 +83,7 @@ done
 LIB_DIR=${LIB_DIR:-/usr/lib/cassandra}
 BIN_DIR=${BIN_DIR:-/usr/bin}
 CONF_DIR=${CONF_DIR:-/etc/cassandra/conf.dist}
+LOG_DIR=${LOG_DIR:-$PREFIX/$VAR_DIR/log/cassandra}
 
 install -d -m 0755 $PREFIX/$LIB_DIR
 install -d -m 0755 $PREFIX/$LIB_DIR/bin
@@ -90,7 +91,7 @@ install -d -m 0755 $PREFIX/$LIB_DIR/lib
 install -d -m 0755 $PREFIX/$LIB_DIR/build
 install -d -m 0755 $PREFIX/$LIB_DIR/pylib
 install -d -m 0755 $PREFIX/$VAR_DIR/lib/cassandra
-install -d -m 0755 $PREFIX/$VAR_DIR/log/cassandra
+install -d -m 0755 $LOG_DIR
 install -d -m 0755 $PREFIX/$VAR_DIR/run/cassandra
 
 cp -ra ${BUILD_DIR}/lib/* $PREFIX/${LIB_DIR}/lib/
@@ -111,9 +112,9 @@ ln -s /etc/cassandra/conf $PREFIX/$LIB_DIR/conf
 install -d -m 0755 $PREFIX/$BIN_DIR
 cat > $PREFIX/$BIN_DIR/cassandra <<EOF
 
-!/bin/bash
+#!/bin/bash
 # Autodetect JAVA_HOME if not defined
 . /usr/lib/bigtop-utils/bigtop-detect-javahome
-
+${LIB_DIR}/bin/cassandra -Dcassandra.logdir=${LOG_DIR}
 EOF
 chmod 755 $PREFIX/$BIN_DIR/cassandra
