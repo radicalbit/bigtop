@@ -21,10 +21,10 @@ usage() {
   echo "
 usage: $0 <options>
   Required not-so-options:
-     --build-dir=DIR             path to flink dist.dir
+     --build-dir=DIR             path to cassandra dist.dir
      --prefix=PREFIX             path to install into
   Optional options:
-     --lib-dir=DIR               path to install flink home [/usr/lib/cassandra]
+     --lib-dir=DIR               path to install cassandra home [/usr/lib/cassandra]
      --bin-dir=DIR               path to install bins [/usr/bin]
      ... [ see source for more similar options ]
   "
@@ -83,7 +83,7 @@ done
 LIB_DIR=${LIB_DIR:-/usr/lib/cassandra}
 BIN_DIR=${BIN_DIR:-/usr/bin}
 CONF_DIR=${CONF_DIR:-/etc/cassandra/conf.dist}
-LOG_DIR=${LOG_DIR:-$PREFIX/$VAR_DIR/log/cassandra}
+LOG_DIR=$VAR_DIR/log/cassandra
 
 install -d -m 0755 $PREFIX/$LIB_DIR
 install -d -m 0755 $PREFIX/$LIB_DIR/bin
@@ -91,7 +91,7 @@ install -d -m 0755 $PREFIX/$LIB_DIR/lib
 install -d -m 0755 $PREFIX/$LIB_DIR/build
 install -d -m 0755 $PREFIX/$LIB_DIR/pylib
 install -d -m 0755 $PREFIX/$VAR_DIR/lib/cassandra
-install -d -m 0755 $LOG_DIR
+install -d -m 0755 $PREFIX/$LOG_DIR
 install -d -m 0755 $PREFIX/$VAR_DIR/run/cassandra
 
 cp -ra ${BUILD_DIR}/lib/* $PREFIX/${LIB_DIR}/lib/
@@ -108,13 +108,14 @@ install -d -m 0755 $PREFIX/$CONF_DIR
 cp -a ${BUILD_DIR}/conf/* $PREFIX/$CONF_DIR
 ln -s /etc/cassandra/conf $PREFIX/$LIB_DIR/conf
 
-# Copy in the /usr/bin/flink wrapper
+# Copy in the /usr/bin/cassandra wrapper
 install -d -m 0755 $PREFIX/$BIN_DIR
-cat > $PREFIX/$BIN_DIR/cassandra <<EOF
 
+cat > $PREFIX/$BIN_DIR/cassandra <<EOF
 #!/bin/bash
 # Autodetect JAVA_HOME if not defined
 . /usr/lib/bigtop-utils/bigtop-detect-javahome
-${LIB_DIR}/bin/cassandra -Dcassandra.logdir=${LOG_DIR}
+$LIB_DIR/bin/cassandra -Dcassandra.logdir=$LOG_DIR
 EOF
+
 chmod 755 $PREFIX/$BIN_DIR/cassandra
