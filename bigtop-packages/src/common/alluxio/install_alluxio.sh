@@ -111,7 +111,7 @@ install -d -m 0755 $PREFIX/$VAR_DIR/lib/alluxio/core/server/src/main/webapp
 install -d -m 0755 $PREFIX/$VAR_DIR/run/alluxio
 
 #cp -ra ${BUILD_DIR}/lib/* $PREFIX/${LIB_DIR}/lib/
-cp assembly/target/alluxio-assemblies-${VERSION}-jar-with-dependencies.jar $PREFIX/$LIB_DIR
+cp assembly/target/alluxio-assemblies-1.0.0-jar-with-dependencies.jar $PREFIX/$LIB_DIR
 cp -a bin/* $PREFIX/${LIB_DIR}/bin
 cp -a libexec/* $PREFIX/${LIB_DIR}/libexec
 cp -rf core/server/src/main/webapp $PREFIX/$VAR_DIR/lib/alluxio/core/server/src/main
