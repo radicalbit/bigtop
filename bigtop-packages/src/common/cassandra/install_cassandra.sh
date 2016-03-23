@@ -118,4 +118,16 @@ cat > $PREFIX/$BIN_DIR/cassandra <<EOF
 $LIB_DIR/bin/cassandra -Dcassandra.logdir=$LOG_DIR
 EOF
 
+cat > $PREFIX/$BIN_DIR/cqlsh <<EOF
+#!/bin/bash
+$LIB_DIR/bin/cqlsh
+EOF
+
+cat > $PREFIX/$BIN_DIR/nodetool <<EOF
+#!/bin/bash
+$LIB_DIR/bin/nodetool $@
+EOF
+
 chmod 755 $PREFIX/$BIN_DIR/cassandra
+chmod 755 $PREFIX/$BIN_DIR/cqlsh
+chmod 755 $PREFIX/$BIN_DIR/nodetool
