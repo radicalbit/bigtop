@@ -78,6 +78,8 @@ bash %{SOURCE2} \
 %config(noreplace) %{config_cassandra}.dist
 %{lib_cassandra}
 %{bin_cassandra}/cassandra
+%{bin_cassandra}/cqlsh
+%{bin_cassandra}/nodetool
 %{var_run}
 %{var_log}
 %{var_lib}

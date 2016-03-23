@@ -115,17 +115,17 @@ cat > $PREFIX/$BIN_DIR/cassandra <<EOF
 #!/bin/bash
 # Autodetect JAVA_HOME if not defined
 . /usr/lib/bigtop-utils/bigtop-detect-javahome
-$LIB_DIR/bin/cassandra -Dcassandra.logdir=$LOG_DIR $@
+$LIB_DIR/bin/cassandra -Dcassandra.logdir=$LOG_DIR "\$@"
 EOF
 
 cat > $PREFIX/$BIN_DIR/cqlsh <<EOF
 #!/bin/bash
-$LIB_DIR/bin/cqlsh $@
+$LIB_DIR/bin/cqlsh "\$@"
 EOF
 
 cat > $PREFIX/$BIN_DIR/nodetool <<EOF
 #!/bin/bash
-$LIB_DIR/bin/nodetool $@
+$LIB_DIR/bin/nodetool "\$@"
 EOF
 
 chmod 755 $PREFIX/$BIN_DIR/cassandra
