@@ -111,13 +111,13 @@ install -d -m 0755 $PREFIX/$VAR_DIR/lib/alluxio/core/server/src/main/webapp
 install -d -m 0755 $PREFIX/$VAR_DIR/run/alluxio
 
 #cp -ra ${BUILD_DIR}/lib/* $PREFIX/${LIB_DIR}/lib/
-cp assembly/target/alluxio-assemblies-1.0.0-jar-with-dependencies.jar $PREFIX/$LIB_DIR
+cp assembly/target/alluxio-assemblies-1.0.1-SNAPSHOT-jar-with-dependencies.jar $PREFIX/$LIB_DIR
 cp -a bin/* $PREFIX/${LIB_DIR}/bin
 cp -a libexec/* $PREFIX/${LIB_DIR}/libexec
 cp -rf core/server/src/main/webapp $PREFIX/$VAR_DIR/lib/alluxio/core/server/src/main
 
 sed -i "s:assembly/target/alluxio:alluxio:g" $PREFIX/${LIB_DIR}/libexec/alluxio-config.sh
-sed -i 's:dependencies.jar":dependencies.jar"\nelse\n  VERSION=1.0.0\n  export ALLUXIO_CONF_DIR="/etc/alluxio/conf"\n  export ALLUXIO_LOGS_DIR="/var/log/alluxio"\n  export ALLUXIO_JARS="/usr/lib/alluxio/alluxio-assemblies-${VERSION}-jar-with-dependencies.jar":g' $PREFIX/${LIB_DIR}/libexec/alluxio-config.sh
+sed -i 's:dependencies.jar":dependencies.jar"\nelse\n  VERSION=1.0.1\n  export ALLUXIO_CONF_DIR="/etc/alluxio/conf"\n  export ALLUXIO_LOGS_DIR="/var/log/alluxio"\n  export ALLUXIO_JARS="/usr/lib/alluxio/alluxio-assemblies-${VERSION}-SNAPSHOT-jar-with-dependencies.jar":g' $PREFIX/${LIB_DIR}/libexec/alluxio-config.sh
 
 # Copy in the configuration files
 install -m 0644 conf/log4j.properties conf/workers $PREFIX/etc/alluxio/conf
