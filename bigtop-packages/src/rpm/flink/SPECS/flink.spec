@@ -19,11 +19,12 @@
 %define etc_flink /etc/%{flink_name}
 %define config_flink %{etc_flink}/conf
 %define man_dir %{_mandir}
+%define build_version 1.0-SNAPSHOT
 
 %if  %{!?suse_version:1}0
 %define doc_flink %{_docdir}/%{flink_name}
 %define alternatives_cmd alternatives
-%define build_flink %{_builddir}/%{flink_name}-%{flink_version}/flink-dist/target/%{flink_name}-%{flink_version}-bin/%{flink_name}-%{flink_version}/
+%define build_flink %{_builddir}/%{flink_name}-%{flink_version}/flink-dist/target/%{flink_name}-%{build_version}-bin/%{flink_name}-%{build_version}/
 
 %else
 %define doc_flink %{_docdir}/%{flink_name}
