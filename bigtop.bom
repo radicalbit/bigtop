@@ -78,6 +78,8 @@ bigtop {
   }
   radicalbit {
     RADICALBIT_GITHUB = "https://github.com/radicalbit"
+    STACK_NAME = "rbp"
+    STACK_VERSION = "1.0"
   }
 /** End of Base Configuration */
 
@@ -112,7 +114,7 @@ bigtop {
         release = 1
       }
       tarball {
-        source      = "release-${version.base}.zip"
+        source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip"
         destination = "zookeeper-${version.base}.tar.gz"
       }
       url {
