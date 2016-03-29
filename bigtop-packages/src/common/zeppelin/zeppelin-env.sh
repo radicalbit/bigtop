@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export ZEPPELIN_INTERPRETERS="org.apache.zeppelin.spark.SparkInterpreter,org.apache.zeppelin.spark.PySparkInterpreter,org.apache.zeppelin.spark.SparkSqlInterpreter,org.apache.zeppelin.spark.DepInterpreter,org.apache.zeppelin.markdown.Markdown,org.apache.zeppelin.angular.AngularInterpreter,org.apache.zeppelin.shell.ShellInterpreter,org.apache.zeppelin.hive.HiveInterpreter"
+export ZEPPELIN_INTERPRETERS="org.apache.zeppelin.markdown.Markdown,org.apache.zeppelin.angular.AngularInterpreter,org.apache.zeppelin.shell.ShellInterpreter,org.apache.zeppelin.alluxio.AlluxioInterpreter,org.apache.zeppelin.file.HDFSFileInterpreter,org.apache.zeppelin.flink.FlinkInterpreter,org.apache.zeppelin.cassandra.CassandraInterpreter,org.apache.zeppelin.jdbc.JDBCInterpreter"
 export ZEPPELIN_PORT=8080
 export ZEPPELIN_CONF_DIR=/etc/zeppelin/conf
 export ZEPPELIN_LOG_DIR=/var/log/zeppelin
