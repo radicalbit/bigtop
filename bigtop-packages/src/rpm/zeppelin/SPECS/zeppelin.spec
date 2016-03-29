@@ -50,6 +50,7 @@ Source3: init.d.tmpl
 Source4: install_zeppelin.sh
 Source5: zeppelin-env.sh
 Source6: zeppelin.svc
+#BIGTOP_PATCH_FILES
 Requires: bigtop-utils >= 0.7, hadoop-client, spark-core >= 1.5, spark-python >= 1.5
 Requires(preun): /sbin/service
 
@@ -68,12 +69,14 @@ Requires: /lib/lsb/init-functions
 
 %endif
 
-%description 
+%description
 Zeppelin is a web-based notebook that enables interactive data analytics with Apache Spark.
 You can make beautiful data-driven, interactive and collaborative documents with SQL, Scala and more.
 
 %prep
-%setup -n %{name}-%{zeppelin_base_version}-incubating
+%setup -n %{name}-%{zeppelin_base_version}
+
+#BIGTOP_PATCH_COMMANDS
 
 %build
 bash $RPM_SOURCE_DIR/do-component-build
@@ -85,7 +88,7 @@ bash $RPM_SOURCE_DIR/do-component-build
 %__install -d -m 0755 $RPM_BUILD_ROOT/%{initd_dir}/
 
 bash $RPM_SOURCE_DIR/install_zeppelin.sh \
-  --build-dir=`pwd`         \
+  --build-dir=$RPM_BUILD_DIR/%{name}-%{zeppelin_base_version} \
   --source-dir=$RPM_SOURCE_DIR \
   --prefix=$RPM_BUILD_ROOT  \
   --doc-dir=%{doc_zeppelin}

@@ -429,13 +429,13 @@ bigtop {
     }
     'zeppelin' {
       name    = 'zeppelin'
-      relNotes = 'Apache Zeppelin (incubating)'
-      version { base = '0.5.6'; pkg = base; release = 1 }
-      tarball { source      = "$name-${version.base}-incubating.tgz"
+      relNotes = 'Apache Zeppelin'
+      version { base = '0.6.0'; pkg = base; release = 1 }
+      tarball { source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip"
                 destination = "$name-${version.base}.tar.gz" }
-      url     { download_path = "/incubator/$name/${version.base}-incubating/"
-                site = "${apache.APACHE_MIRROR}/${download_path}"
-                archive = "${apache.APACHE_ARCHIVE}/${download_path}" }
+      url     { download_path = "/incubator-zeppelin/archive"
+                site = "${radicalbit.RADICALBIT_GITHUB}/${download_path}"
+                archive = "${radicalbit.RADICALBIT_GITHUB}/${download_path}" }
     }
   }
 }
