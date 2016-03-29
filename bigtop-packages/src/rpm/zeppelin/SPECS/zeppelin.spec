@@ -94,27 +94,27 @@ bash $RPM_SOURCE_DIR/install_zeppelin.sh \
   --doc-dir=%{doc_zeppelin}
 
 # Install init script
-initd_script=$RPM_BUILD_ROOT/%{initd_dir}/%{name}
-bash %{SOURCE3} $RPM_SOURCE_DIR/%{name}.svc rpm $initd_script
+#initd_script=$RPM_BUILD_ROOT/%{initd_dir}/%{name}
+#bash %{SOURCE3} $RPM_SOURCE_DIR/%{name}.svc rpm $initd_script
 
 %pre
 getent group zeppelin >/dev/null || groupadd -r zeppelin
 getent passwd zeppelin >/dev/null || useradd -c "Zeppelin" -s /sbin/nologin -g zeppelin -r -d %{var_lib_zeppelin} zeppelin 2> /dev/null || :
 
 %post
-%{alternatives_cmd} --install %{config_zeppelin} %{name}-conf %{config_zeppelin}.dist 30
-chkconfig --add %{name}
+#%{alternatives_cmd} --install %{config_zeppelin} %{name}-conf %{config_zeppelin}.dist 30
+#chkconfig --add %{name}
 
 %preun
-if [ "$1" = 0 ]; then
-  %{alternatives_cmd} --remove %{name}-conf %{config_zeppelin}.dist || :
-fi
+#if [ "$1" = 0 ]; then
+#  %{alternatives_cmd} --remove %{name}-conf %{config_zeppelin}.dist || :
+#fi
 
-/sbin/service %{name} status > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-  service %{name} stop > /dev/null 2>&1
-fi
-chkconfig --del %{name}
+#/sbin/service %{name} status > /dev/null 2>&1
+#if [ $? -eq 0 ]; then
+#  service %{name} stop > /dev/null 2>&1
+#fi
+#chkconfig --del %{name}
 
 #######################
 #### FILES SECTION ####
@@ -136,4 +136,4 @@ chkconfig --del %{name}
 %attr(0755,zeppelin,zeppelin) %{var_run_zeppelin}
 %attr(0755,zeppelin,zeppelin) %{var_run_zeppelin}/webapps
 %attr(0755,zeppelin,zeppelin) %{var_log_zeppelin}
-%attr(0755,root,root)/%{initd_dir}/%{name}
+#%attr(0755,root,root)/%{initd_dir}/%{name}
