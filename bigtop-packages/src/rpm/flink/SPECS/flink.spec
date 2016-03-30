@@ -26,7 +26,7 @@
 %if  %{!?suse_version:1}0
 %define doc_flink %{_docdir}/%{flink_name}
 %define alternatives_cmd alternatives
-%define build_flink %{_builddir}/%{flink_name}-%{flink_version}/%{flink_name}-%{rbp_version}-dist/target/%{flink_build_name}-bin/%{flink_build_name}/
+%define build_flink %{_builddir}/%{flink_name}-%{flink_version}/%{flink_name}-dist/target/%{flink_build_name}-bin/%{flink_build_name}/
 
 %else
 %define doc_flink %{_docdir}/%{flink_name}
