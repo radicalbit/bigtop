@@ -21,5 +21,5 @@ export ZEPPELIN_PID_DIR=/var/run/zeppelin
 export ZEPPELIN_WAR_TEMPDIR=/var/run/zeppelin/webapps
 export ZEPPELIN_NOTEBOOK_DIR=/var/lib/zeppelin/notebook
 export MASTER=yarn-client
-export SPARK_HOME=/usr/lib/spark
+# export SPARK_HOME=/usr/lib/spark
 export HADOOP_CONF_DIR=/etc/hadoop/conf

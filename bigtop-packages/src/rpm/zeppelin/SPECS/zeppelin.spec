@@ -51,7 +51,7 @@ Source4: install_zeppelin.sh
 Source5: zeppelin-env.sh
 Source6: zeppelin.svc
 #BIGTOP_PATCH_FILES
-Requires: bigtop-utils >= 0.7, hadoop-client, spark-core >= 1.5, spark-python >= 1.5
+Requires: bigtop-utils >= 0.7, hadoop-client
 Requires(preun): /sbin/service
 
 %global initd_dir %{_sysconfdir}/init.d
