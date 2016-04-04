@@ -125,7 +125,8 @@ tar --wildcards --strip-components=1 -C $PREFIX/var/lib/zeppelin -zxf ${BUILD_DI
 chmod 755 $PREFIX/$LIB_DIR/bin/*
 
 cp -a ${BUILD_DIR}/{LICENSE,README.md} $PREFIX/$LIB_DIR
-
 cp -a ${BUILD_DIR}/conf/* $PREFIX/$CONF_DIR
 cp -a ${SOURCE_DIR}/zeppelin-env.sh $PREFIX/$CONF_DIR
-ln -s /etc/zeppelin/conf $PREFIX/$LIB_DIR/conf
+cp -a ${SOURCE_DIR}/interpreter.json $PREFIX/$CONF_DIR
+#ln -s /etc/zeppelin/conf.dist /etc/zeppelin/conf
+ln -s /etc/zeppelin/conf.dist $PREFIX/$LIB_DIR/conf

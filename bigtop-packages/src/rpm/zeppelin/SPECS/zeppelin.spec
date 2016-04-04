@@ -50,6 +50,7 @@ Source3: init.d.tmpl
 Source4: install_zeppelin.sh
 Source5: zeppelin-env.sh
 Source6: zeppelin.svc
+Source7: interpreter.json
 #BIGTOP_PATCH_FILES
 Requires: bigtop-utils >= 0.7, hadoop-client
 Requires(preun): /sbin/service
@@ -102,7 +103,7 @@ getent group zeppelin >/dev/null || groupadd -r zeppelin
 getent passwd zeppelin >/dev/null || useradd -c "Zeppelin" -s /sbin/nologin -g zeppelin -r -d %{var_lib_zeppelin} zeppelin 2> /dev/null || :
 
 %post
-#%{alternatives_cmd} --install %{config_zeppelin} %{name}-conf %{config_zeppelin}.dist 30
+%{alternatives_cmd} --install %{config_zeppelin} %{name}-conf %{config_zeppelin}.dist 30
 #chkconfig --add %{name}
 
 %preun
