@@ -26,8 +26,7 @@ BUILD_OPTS="-Divy.home=${HOME}/.ivy2 -Dsbt.ivy.home=${HOME}/.ivy2 -Duser.home=${
             -Dhadoop.version=$HADOOP_VERSION \
             -Dalluxio.version=$ALLUXIO_VERSION \
             -Pscala-2.11 -Dscala.version=$SCALA_VERSION \
-            -Pbuild-distr
-            -Pyarn"
+            -Pbuild-distr"
 
 BUILD_OPTS="$BUILD_OPTS -DskipTests -Dcheckstyle.skip"
 
