@@ -47,6 +47,7 @@ Source0: cassandra-%{cassandra_base_version}.zip
 Source1: do-component-build
 Source2: install_cassandra.sh
 Source3: bigtop.bom
+#BIGTOP_PATCH_FILES
 #Requires: bigtop-utils >= 0.7
 
 %description
@@ -54,6 +55,8 @@ Apache cassandra
 
 %prep
 %setup -n %{cassandra_name}-%{cassandra_base_version}
+
+#BIGTOP_PATCH_COMMANDS
 
 %build
 bash $RPM_SOURCE_DIR/do-component-build

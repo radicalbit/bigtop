@@ -1,0 +1,73 @@
+diff --git a/src/java/org/apache/cassandra/service/StorageService.java b/src/java/org/apache/cassandra/service/StorageService.java
+index 52dcb97..b50c41c 100644
+--- a/src/java/org/apache/cassandra/service/StorageService.java
++++ b/src/java/org/apache/cassandra/service/StorageService.java
+@@ -706,7 +706,32 @@ public class StorageService extends NotificationBroadcasterSupport implements IE
+
+         if (Boolean.parseBoolean(System.getProperty("cassandra.join_ring", "true")))
+         {
+-            joinTokenRing(delay);
++            boolean cont = true;
++            int attempt = 0;
++            while (cont)
++            {
++                attempt++;
++                logger.info("Attempt to run 'joinTokenRing' {}", attempt);
++                try
++                {
++                    joinTokenRing(delay);
++                    logger.info("'joinTokenRing' successful");
++                    cont = false;
++                }
++                catch (Exception e)
++                {
++                    logger.info("'joinTokenRing' problem");
++                    try
++                    {
++                        Thread.sleep(2000);
++                    }
++                    catch (InterruptedException e1)
++                    {
++                        e1.printStackTrace();
++                    }
++                    cont = true;
++                }
++            }
+         }
+         else
+         {
+@@ -763,7 +763,33 @@ public class StorageService extends NotificationBroadcasterSupport implements IE
+             }
+             else if (shouldBootstrap())
+             {
+-                checkForEndpointCollision();
++                boolean cont = true;
++                int attempt = 0;
++                while (cont)
++                {
++                    attempt++;
++                    logger.info("Attempt to run 'checkForEndpointCollision' {}", attempt);
++                    try
++                    {
++                        checkForEndpointCollision();
++                        logger.info("'checkForEndpointCollision' successful");
++                        cont = false;
++                    }
++                    catch (Exception e)
++                    {
++                        logger.info("'checkForEndpointCollision' problem");
++                        try
++                        {
++                            Thread.sleep(2000);
++                        }
++                        catch (InterruptedException e1)
++                        {
++                            e1.printStackTrace();
++                        }
++                        cont = true;
++                    }
++                }
++
+             }
+
+             // have to start the gossip service before we can see any info on other nodes.  this is necessary
