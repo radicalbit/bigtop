@@ -20,6 +20,6 @@ set -ex
 
 #export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=512m -XX:PermSize=1024m -XX:MaxPermSize=1024m"
 
-#tools/change-scala-version.sh 2.11
+tools/change-scala-version.sh 2.11
 
 mvn clean install -DskipTests -Drat.skip -Pvendor-repos -Dhadoop.version=$HADOOP_VERSION -Dscala.version=$SCALA_VERSION -Dzookeeper.version=$ZOOKEEPER_VERSION "$@"
