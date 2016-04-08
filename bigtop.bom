@@ -351,9 +351,9 @@ bigtop {
     'flink' {
       name    = 'flink'
       relNotes = 'Apache Flink'
-      version { base = '1.0.1'; pkg = base; release = 001 }
+      version { base = '1.0.1'; pkg = base; release = 1 }
       tarball { destination = "${name}-${version.base}.zip"
-                source      = "$name-${version.base}-{radicalbit.STACK_NAME}-$release.zip" }
+                source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip" }
       url     { download_path = "/$name/archive"
                 site = "${radicalbit.RADICALBIT_GITHUB}/${download_path}"
                 archive = "${radicalbit.RADICALBIT_GITHUB}/${download_path}" }

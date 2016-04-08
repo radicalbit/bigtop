@@ -20,8 +20,8 @@
 %define config_flink %{etc_flink}/conf
 %define man_dir %{_mandir}
 %define build_version 1.0-SNAPSHOT
-%define rbp_version rbp-1.0
-%define flink_build_name %{flink_name}-%{rbp_version}-%{build_version}
+%define rbp_version rbp-001
+%define flink_build_name %{flink_name}-%{flink_version}-%{rbp_version}
 
 %if  %{!?suse_version:1}0
 %define doc_flink %{_docdir}/%{flink_name}
