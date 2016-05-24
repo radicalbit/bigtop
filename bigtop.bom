@@ -78,7 +78,7 @@ bigtop {
   }
   radicalbit {
     RADICALBIT_GITHUB = "https://github.com/radicalbit"
-    STACK_NAME = "rbp"
+    STACK_NAME = "rbd"
     STACK_VERSION = "1.0"
   }
 /** End of Base Configuration */
@@ -351,7 +351,7 @@ bigtop {
     'flink' {
       name    = 'flink'
       relNotes = 'Apache Flink'
-      version { base = '1.0.1'; pkg = base; release = 1 }
+      version { base = '1.0.3'; pkg = base; release = 1 }
       tarball { destination = "${name}-${version.base}.zip"
                 source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip" }
       url     { download_path = "/$name/archive"
@@ -384,7 +384,8 @@ bigtop {
       relNotes = "Alluxio: a memory-centric distributed file system"
       version { base = '1.0.1'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}-bin.tar.gz"
-                source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip" }
+                source      = "kr-master-int.zip" }
+                //source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip" }
       url     { download_path = "/$name/archive"
                 site = "${radicalbit.RADICALBIT_GITHUB}/${download_path}"
                 archive = "${radicalbit.RADICALBIT_GITHUB}/${download_path}" }
