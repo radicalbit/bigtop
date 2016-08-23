@@ -14,6 +14,7 @@
 # limitations under the License.
 %define        kibana_name kibana
 %define        kibana_home /usr/lib/%{kibana_name}
+%define        kibana_bin /usr/bin
 %define        var_lib /var/lib/%{kibana_name}
 %define        var_run /var/run/%{kibana_name}
 %define        var_log /var/log/%{kibana_name}
@@ -42,7 +43,7 @@
 # disable repacking jars
 %define __arch_install_post %{nil}
 
-Name:           Kibana
+Name:           kibana
 Version:        %{kibana_version}
 Release:        %{kibana_release}
 Summary:       Kibana is an open source data visualization platform that allows you to interact with your data through stunning, powerful graphics
@@ -81,7 +82,6 @@ rm -rf $RPM_BUILD_ROOT
 bash %{SOURCE2} \
     --build-dir=%{build_kibana} \
     --bin-dir=%{_bindir} \
-    --data-dir=%{_datadir} \
     --var-dir=%{_var}  \
     --prefix="${RPM_BUILD_ROOT}"
 
@@ -93,18 +93,11 @@ if [ "$1" = 0 ]; then
   %{alternatives_cmd} --remove %{kibana_name}-conf %{config_kibana}.dist || :
 fi
 
-#for service in %{kibana_services}; do
-#  /sbin/service %{kibana_name}-${service} status > /dev/null 2>&1
-#  if [ $? -eq 0 ]; then
-#    /sbin/service %{kibana_name}-${service} stop > /dev/null 2>&1
-#  fi
-#done
-
 %files
 %defattr(-,root,root,755)
 %config(noreplace) %{config_kibana}.dist
-%{lib_kibana}
-%{bin_kibana}/kibana
+%{kibana_home}
+%{kibana_bin}/kibana
 %attr(0755,root,root) %{var_lib}
 %attr(0755,root,root) %{var_run}
 %attr(0755,root,root) %{var_log}

@@ -84,32 +84,33 @@ LIB_DIR=${LIB_DIR:-/usr/lib/kibana}
 BIN_DIR=${BIN_DIR:-/usr/bin}
 CONF_DIR=${CONF_DIR:-/etc/kibana/conf.dist}
 
-install -d -m 0755 $PREFIX/$LIB_DIR
+#install -d -m 0755 $PREFIX/$LIB_DIR
 install -d -m 0755 $PREFIX/$LIB_DIR/bin
 install -d -m 0755 $PREFIX/$LIB_DIR/installedPlugins
 install -d -m 0755 $PREFIX/$LIB_DIR/node_modules
 install -d -m 0755 $PREFIX/$LIB_DIR/optimize
 install -d -m 0755 $PREFIX/$LIB_DIR/src
 install -d -m 0755 $PREFIX/$LIB_DIR/webpackShims
-install -d -m 0755 $PREFIX/etc
-install -d -m 0755 $PREFIX/etc/kibana
-install -d -m 0755 $PREFIX/etc/kibana/conf
+install -d -m 0755 $PREFIX/$CONF_DIR
 install -d -m 0755 $PREFIX/$VAR_DIR/log/kibana
 install -d -m 0755 $PREFIX/$VAR_DIR/lib/kibana
 install -d -m 0755 $PREFIX/$VAR_DIR/run/kibana
 
-cp -a bin/* $PREFIX/${LIB_DIR}/bin
+cp -a ${BUILD_DIR}/bin/* $PREFIX/${LIB_DIR}/bin
 rm -f $PREFIX/${LIB_DIR}/bin/*.bat
-cp -a installedPlugins/* $PREFIX/${LIB_DIR}/installedPlugins
-cp -a node_modules/* $PREFIX/${LIB_DIR}/node_modules
-cp -a optimize/* $PREFIX/${LIB_DIR}/optimize
-cp -a src/* $PREFIX/${LIB_DIR}/src
-cp -a webpackShims/* $PREFIX/${LIB_DIR}/webpackShims
+#cp -a ${BUILD_DIR}/installedPlugins/* $PREFIX/${LIB_DIR}/installedPlugins
+cp -a ${BUILD_DIR}/node_modules/* $PREFIX/${LIB_DIR}/node_modules
+cp -a ${BUILD_DIR}/optimize/* $PREFIX/${LIB_DIR}/optimize
+cp -a ${BUILD_DIR}/src/* $PREFIX/${LIB_DIR}/src
+cp -a ${BUILD_DIR}/webpackShims/* $PREFIX/${LIB_DIR}/webpackShims
+cp ${BUILD_DIR}/package.json $PREFIX/${LIB_DIR}/package.json
+cp ${BUILD_DIR}/README.txt $PREFIX/${LIB_DIR}/README.txt
+cp ${BUILD_DIR}/LICENSE.txt $PREFIX/${LIB_DIR}/LICENSE.txt
 
 # Copy in the configuration files
 install -d -m 0755 $PREFIX/$CONF_DIR
-cp -a ${BUILD_DIR}/conf/* $PREFIX/$CONF_DIR
-ln -s /etc/kibana/conf $PREFIX/$LIB_DIR/conf
+cp -a ${BUILD_DIR}/config/* $PREFIX/$CONF_DIR
+ln -s $CONF_DIR $PREFIX/$LIB_DIR/conf
 
 # Copy in the /usr/bin/kibana wrapper
 install -d -m 0755 $PREFIX/$BIN_DIR
