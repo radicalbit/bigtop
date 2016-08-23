@@ -132,3 +132,13 @@ exec $INSTALLED_LIB_DIR/bin/elasticsearch "\$@"
 
 EOF
 chmod 755 $PREFIX/$BIN_DIR/elasticsearch
+
+cat > $PREFIX/$BIN_DIR/es-plugin <<EOF
+#!/bin/bash
+# Autodetect JAVA_HOME if not defined
+. /usr/lib/bigtop-utils/bigtop-detect-javahome
+
+exec $INSTALLED_LIB_DIR/bin/plugin "\$@"
+
+EOF
+chmod 755 $PREFIX/$BIN_DIR/es-plugin
