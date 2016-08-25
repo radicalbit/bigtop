@@ -111,15 +111,18 @@ install -d -m 0755 $PREFIX/$VAR_DIR/lib/elasticsearch
 install -d -m 0755 $PREFIX/$VAR_DIR/run/elasticsearch
 
 cp -ra ${BUILD_DIR}/lib/* $PREFIX/${LIB_DIR}/lib/
-cp -a ${BUILD_DIR}/bin/* $PREFIX/${LIB_DIR}/bin
 cp -ra ${BUILD_DIR}/modules/* $PREFIX/${LIB_DIR}/modules/
+cp -a ${BUILD_DIR}/bin/* $PREFIX/${LIB_DIR}/bin
 rm -rf $PREFIX/${LIB_DIR}/bin/*.exe
 rm -rf $PREFIX/${LIB_DIR}/bin/*.bat
+sed -i "s:ES_MIN_MEM=\${packaging.elasticsearch.heap.min}:ES_MIN_MEM=1g:g" $PREFIX/${LIB_DIR}/bin/elasticsearch.in.sh
+sed -i "s:ES_MAX_MEM=\${packaging.elasticsearch.heap.max}:ES_MAX_MEM=2g:g" $PREFIX/${LIB_DIR}/bin/elasticsearch.in.sh
+chmod 755 $PREFIX/${LIB_DIR}/bin/*
 
 # Copy in the configuration files
 install -d -m 0755 $PREFIX/$CONF_DIR
 cp -a ${SOURCE_CONF_DIR}/* $PREFIX/$CONF_DIR
-ln -s /etc/elasticsearch/conf $PREFIX/$LIB_DIR/conf
+ln -s /etc/elasticsearch/conf.dist $PREFIX/$LIB_DIR/config
 
 # Copy in the /usr/bin/elasticsearch wrapper
 install -d -m 0755 $PREFIX/$BIN_DIR

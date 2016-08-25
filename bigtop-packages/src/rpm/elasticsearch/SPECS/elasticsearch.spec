@@ -74,6 +74,7 @@ sh -x %{SOURCE2} --prefix=$RPM_BUILD_ROOT --build-dir=%{build_elasticsearch} --s
 %config(noreplace) %{config_elasticsearch}.dist
 %{lib_elasticsearch}
 %{bin_elasticsearch}/elasticsearch
+%{bin_elasticsearch}/es-plugin
 %attr(0755,root,root) %{var_lib}
 %attr(0755,root,root) %{var_run}
 %attr(0755,root,root) %{var_log}
