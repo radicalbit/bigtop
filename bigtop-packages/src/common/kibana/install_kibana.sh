@@ -110,7 +110,7 @@ cp ${BUILD_DIR}/LICENSE.txt $PREFIX/${LIB_DIR}/LICENSE.txt
 # Copy in the configuration files
 install -d -m 0755 $PREFIX/$CONF_DIR
 cp -a ${BUILD_DIR}/config/* $PREFIX/$CONF_DIR
-ln -s $CONF_DIR $PREFIX/$LIB_DIR/conf
+ln -s $CONF_DIR $PREFIX/$LIB_DIR/config
 
 # Copy in the /usr/bin/kibana wrapper
 install -d -m 0755 $PREFIX/$BIN_DIR
