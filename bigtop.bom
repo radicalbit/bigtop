@@ -384,8 +384,8 @@ bigtop {
       relNotes = "Alluxio: a memory-centric distributed file system"
       version { base = '1.2.0'; pkg = base; release = 1 }
       tarball { destination = "$name-${version.base}-bin.tar.gz"
-                source      = "kr-master-int.zip" }
-                //source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip" }
+                //source      = "kr-master-int.zip" }
+                source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip" }
       url     { download_path = "/$name/archive"
                 site = "${radicalbit.RADICALBIT_GITHUB}/${download_path}"
                 archive = "${radicalbit.RADICALBIT_GITHUB}/${download_path}" }
