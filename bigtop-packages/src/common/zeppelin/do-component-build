@@ -25,6 +25,7 @@ BUILD_OPTS="-Divy.home=${HOME}/.ivy2 -Dsbt.ivy.home=${HOME}/.ivy2 -Duser.home=${
             -Dreactor.repo=file://${HOME}/.m2/repository \
             -Dhadoop.version=$HADOOP_VERSION \
             -Dalluxio.version=$ALLUXIO_VERSION \
+            -Delasticsearch.version=$ELASTICSEARCH_VERSION
             -Pscala-2.11 -Dscala.version=$SCALA_VERSION \
             -Pbuild-distr"
 
