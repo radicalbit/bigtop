@@ -448,5 +448,15 @@ bigtop {
                 site = "${radicalbit.RADICALBIT_GITHUB}/${download_path}"
                 archive = "${radicalbit.RADICALBIT_GITHUB}/${download_path}" }
     }
+    'kibana' {
+      name    = 'kibana'
+      relNotes = 'Kibana'
+      version { base = '4.5.4'; pkg = base; release = 1 }
+      tarball { destination = "${name}-${version.base}.zip"
+                source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip" }
+      url     { download_path = "/$name/archive"
+                site = "${radicalbit.RADICALBIT_GITHUB}/${download_path}"
+                archive = "${radicalbit.RADICALBIT_GITHUB}/${download_path}" }
+    }
   }
 }
