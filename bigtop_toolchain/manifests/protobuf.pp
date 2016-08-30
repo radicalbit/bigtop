@@ -27,7 +27,7 @@ class bigtop_toolchain::protobuf {
       }
     }
   }
- 
+
   case $operatingsystem{
     /Ubuntu|Debian/: {
       $libprotobuf8 = "libprotobuf8_2.5.0-9ubuntu1_$arch.deb"
@@ -35,7 +35,7 @@ class bigtop_toolchain::protobuf {
       $protobuf_compiler = "protobuf-compiler_2.5.0-9ubuntu1_$arch.deb"
 
       exec { "download protobuf":
-        cwd     => "/home/simone/radicalbit",
+        cwd     => "/usr/src",
         command => "/usr/bin/curl -L $url/$libprotobuf8 -o $libprotobuf8; /usr/bin/curl -L $url/$libprotoc8 -o $libprotoc8; /usr/bin/curl -L $url/$protobuf_compiler -o $protobuf_compiler",
         creates  => [ "/usr/src/$libprotobuf8", "/usr/src/$libprotoc8", "/usr/src/$protobuf_compiler" ]
       }
