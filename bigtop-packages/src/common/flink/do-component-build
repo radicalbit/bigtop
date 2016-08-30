@@ -22,4 +22,10 @@ export MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=512m -XX:PermSize=2048m -XX:
 
 tools/change-scala-version.sh 2.11
 
-mvn clean install -DskipTests -Drat.skip -Pvendor-repos -Dhadoop.version=$HADOOP_VERSION -Dscala.version=$SCALA_VERSION -Dzookeeper.version=$ZOOKEEPER_VERSION "$@"
+mvn clean install -DskipTests -Drat.skip -Pvendor-repos \
+  -Dhadoop.version=$HADOOP_VERSION \
+  -Dscala.version=$SCALA_VERSION \
+  -Dzookeeper.version=$ZOOKEEPER_VERSION \
+  -Dcassandra.version=$CASSANDRA_VERSION \
+# -Delasticsearch.version=$ELASTICSEARCH_VERSION \
+  "$@"
