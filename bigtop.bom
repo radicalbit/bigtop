@@ -431,7 +431,7 @@ bigtop {
     'zeppelin' {
       name    = 'zeppelin'
       relNotes = 'Apache Zeppelin'
-      version { base = '0.6.0'; pkg = base; release = 1 }
+      version { base = '0.6.1'; pkg = base; release = 1 }
       tarball { source      = "${radicalbit.STACK_NAME}-${radicalbit.STACK_VERSION}-$name-${version.base}.zip"
                 destination = "$name-${version.base}.tar.gz" }
       url     { download_path = "/incubator-zeppelin/archive"
