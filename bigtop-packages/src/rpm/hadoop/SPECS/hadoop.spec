@@ -393,8 +393,8 @@ Summary: Hadoop client side dependencies
 Group: System/Daemons
 Requires: %{name} = %{version}-%{release}
 Requires: %{name}-hdfs = %{version}-%{release}
-Requires: %{name}-yarn = %{version}-%{release}
-Requires: %{name}-mapreduce = %{version}-%{release}
+#Requires: %{name}-yarn = %{version}-%{release}
+#Requires: %{name}-mapreduce = %{version}-%{release}
 
 %description client
 Installation of this package will provide you with all the dependencies for Hadoop clients.
