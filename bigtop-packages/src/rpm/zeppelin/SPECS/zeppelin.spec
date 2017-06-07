@@ -126,7 +126,7 @@ getent passwd zeppelin >/dev/null || useradd -c "Zeppelin" -s /sbin/nologin -g z
 %doc %{doc_zeppelin}
 %{lib_zeppelin}/LICENSE
 %{lib_zeppelin}/README.md
-%{lib_zeppelin}/*.jar
+#%{lib_zeppelin}/*.jar
 %{lib_zeppelin}/*.war
 %{lib_zeppelin}/bin
 %{lib_zeppelin}/conf
