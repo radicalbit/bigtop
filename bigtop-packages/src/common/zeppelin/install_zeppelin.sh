@@ -118,7 +118,7 @@ install -d -m 0755 $PREFIX/var/run/zeppelin/webapps
 tar --wildcards --strip-components=1 -C $PREFIX/$LIB_DIR -zxf ${BUILD_DIR}/zeppelin-distribution/target/zeppelin-*.tar.gz \*/bin/\*
 tar --wildcards --strip-components=1 -C $PREFIX/$LIB_DIR -zxf ${BUILD_DIR}/zeppelin-distribution/target/zeppelin-*.tar.gz \*/interpreter/\*
 tar --wildcards --strip-components=1 -C $PREFIX/$LIB_DIR -zxf ${BUILD_DIR}/zeppelin-distribution/target/zeppelin-*.tar.gz \*/lib/\*
-tar --wildcards --strip-components=1 -C $PREFIX/$LIB_DIR -zxf ${BUILD_DIR}/zeppelin-distribution/target/zeppelin-*.tar.gz \*zeppelin-server\*.jar
+#tar --wildcards --strip-components=1 -C $PREFIX/$LIB_DIR -zxf ${BUILD_DIR}/zeppelin-distribution/target/zeppelin-*.tar.gz \*zeppelin-server\*.jar
 tar --wildcards --strip-components=1 -C $PREFIX/$LIB_DIR -zxf ${BUILD_DIR}/zeppelin-distribution/target/zeppelin-*.tar.gz \*zeppelin-web\*.war
 tar --wildcards --strip-components=1 -C $PREFIX/var/lib/zeppelin -zxf ${BUILD_DIR}/zeppelin-distribution/target/zeppelin-*.tar.gz \*/notebook/\*
 
